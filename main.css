@@ -2,16 +2,31 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-bg: rgb(65, 61, 61);
+    --secondary-bg: rgb(247, 220, 220);
+    --silent-font-color: rgb(173, 164, 164);
+    --link-font-color: rgb(243, 159, 62);
+    --legend-font-color: rgb(235, 157, 126);
+    --form-container-left-margin: 30px;
+    --input-border: 1px solid rgb(166, 179, 166);
+    --input-invalid-border: 3px solid rgb(214, 93, 93);
+}
+
 body {
     padding: 0;
     margin: 0;
-    background-color: rgb(241, 240, 238);
+    background-color: var(--main-bg);
+}
+
+::selection {
+    background-color: aquamarine;
 }
 
 .main {
     width: min(100vw, 1240px);
     height: 100vh;
-    background-color: rgb(104, 143, 143);
+    background-color: var(--secondary-bg);
     margin: auto;
     display: flex;
 }
@@ -20,22 +35,175 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: rgb(223, 230, 230);
+}
+
+.form-container > p,
+.form-container > h3 {
+    margin-left: var(--form-container-left-margin);
+    font-size: 20px;
+    width: min(100%, 600px);
+}
+
+.form-container form {
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 1px solid rgb(177, 172, 172);
+    border-bottom: 1px solid rgb(83, 77, 77);
+    box-shadow: 0 4px 4px 4px rgba(168, 164, 164, 0.429);
+}
+
+.form-container form > p:first-child{
+    color: var(--legend-font-color);
+    font-size: 22px;
+}
+
+.form-container p,
+.form-container button {
+    margin-left: var(--form-container-left-margin);
+}
+
+.input-row {
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: var(--form-container-left-margin);
+    gap: 60px;
+}
+
+.input-row:last-child {
+    margin-bottom: 20px;
+}
+
+.input-row div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-row label {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.form-container button {
+    margin-top: 40px;
+    align-self: flex-start;
+    padding: 20px 45px;
+    font-size: 16px;
+    background-color: rgb(76, 76, 165);
+    color: rgb(125, 187, 189);
+    border-radius: 10px;
+}
+
+.form-container button:active {
+    background-color: rgb(126, 185, 140);
+}
+
+.form-container button:hover {
+    background-color: rgb(131, 206, 202);
+    color: rgb(107, 107, 107);
+}
+
+.login-redirect {
+    margin-left: var(--form-container-left-margin);
+    margin-top: 20px;
+    color: var(--silent-font-color);
+}
+
+.login-redirect a {
+    color: var(--link-font-color);
+    text-decoration: none;
+}
+
+form input {
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: none;
+    border: var(--input-border);
+}
+
+
+form input:invalid:not(:placeholder-shown) {
+    border: var(--input-invalid-border);
+}
+
+form input:focus {
+    outline: 1px solid blue;
+    box-shadow: 2px 2px 2px 2px gray;
+}
+
+.input-row div {
+    position: relative;
+}
+/*
+form input#last-name:invalid:not(:placeholder-shown) + span::before,
+form input#first-name:invalid:+ span::before,
+form input#phone-number:invalid + span::before,
+form input#password:invalid + span::before {
+    content: "* can't be empty";
+    position: absolute;
+    bottom: -13px;
+    color: red;
+}
+*/
+form input#email:invalid + span::before {
+    content: "* must be a valid email";
+    position: absolute;
+    bottom: -13px;
+    color: red;
+}
+form input#phone-number:invalid:not(:placeholder-shown) + span::before {
+    content: "* must be 8 digits";
+    position: absolute;
+    bottom: -13px;
+    color: red;
 }
 
 .logo-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    background-image: url("images/background.jpg");
+    background-size: 100% 100%;
+    position: relative;
 }
 
 .column-1-3 {
     flex: 1;
     flex-shrink: 1;
-    background-color: bisque;
 }
 
 .column-2-3 {
     flex: 2;
     flex-shrink: 0;
+}
+
+.form-container fieldset {
+    margin: 0;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+}
+
+.logo-container h1 {
+    font-family: 'Macondo', cursive;
+    font-size: 44px;
+    background-color: rgba(177, 151, 151, 0.2);
+    text-align: center;
+    padding: 30px;
+}
+
+.logo-container p {
+    text-align: center;
+    font-size: 15px;
+    color: var(--silent-font-color);
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+
+.logo-container p a {
+    color: var(--link-font-color);
 }
